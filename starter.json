@@ -1,0 +1,19 @@
+{
+    "name": "link-picker",
+    "description": "Pickup link URLs found on HTML/RSS/RDF/Atom",
+    "repository": "git://github.com/kawanet/link-picker.git",
+    "author": "@kawanet",
+    "starter.version": "1.0",
+    "starter.parameters": {
+        "name": "package name: ex. 'node-my-module'",
+        "description": "module description",
+        "repository": "git repository URL",
+        "author": "module author: ex. '@twitter'",
+        "module": "class name: ex. 'MyModule'",
+        "method": "first method name: ex. 'load'",
+        "short": "short name: ex. 'mymod'"
+    },
+    "starter.skip": [
+        "*.jpg", "*.png", "*.gif"
+    ]
+}
