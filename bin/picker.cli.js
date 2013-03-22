@@ -7,11 +7,12 @@ var util = require("util");
 
 program.version(pkg.version);
 program.usage('[options] URL');
-program.option('-b, --base <URL>', 'base URL');
+program.option('-v, --verbose', 'output verbose messages');
+program.option('-t, --text', 'output as plain text (default)');
+program.option('-j, --json', 'output as JSON');
 program.option('-m, --match <URL>', 'match URL (regexp)');
-program.option('-q, --quiet', 'suppress verbose messages');
-program.option('-t, --text', 'plain text output (default)');
-program.option('-j, --json', 'JSON output');
+program.option('-b, --base <URL>', 'base URL for local HTML');
+program.option('-o, --output <file>', 'save as a file');
 program.parse(process.argv);
 
 // die when called without arguments
@@ -30,7 +31,7 @@ if (program.args.length) {
 var picker = new LinkPicker(program);
 picker.on("complete", complete);
 picker.on("error", error);
-picker.on("info", info);
+picker.on("progress", progress);
 picker.fetch(url, callback);
 
 // callback function
@@ -62,7 +63,19 @@ function error(err) {
 }
 
 // progress handler
-function info(str) {
-    if (program.quiet) return;
-    console.info("info:", str);
+function progress(str) {
+    if (!program.verbose) return;
+    console.info("progress:", str);
+}
+
+// output for a file or stdout
+function output(str) {
+    if (program.output && program.output != '-') {
+        progress("output: " + program.output);
+        fs.writeFile(program.output, str, function(err) {
+            if (err) error(err);
+        });
+    } else {
+        util.print(str);
+    }
 }

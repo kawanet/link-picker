@@ -38,9 +38,9 @@ describe('LinkPicker', function() {
             picker.fetch(source_notfound);
         });
 
-        it('emit "info" on progress', function(done) {
+        it('emit "progress" on progress', function(done) {
             var info_list = [];
-            picker.on("info", function(info) {
+            picker.on("progress", function(info) {
                 info_list.push(info);
             });
             picker.on("complete", function() {

@@ -13,27 +13,27 @@ Pickup link URLs found on HTML/RSS/RDF/Atom
 CLI:
 
 ```
-  $ picker -q -m http://www.google.com/ http://www.google.com/
-
+  $ link-picker -m http://www.google.com/ http://www.google.com/
   http://www.google.com/
   http://www.google.com/preferences?hl=ja
   http://www.google.com/advanced_search?hl=ja&authuser=0
   http://www.google.com/language_tools?hl=ja&authuser=0
   http://www.google.com/intl/ja/about.html
 
-  $ picker -h
+  $ link-picker -h
 
-  Usage: picker [options] URL
+  Usage: link-picker [options] URL
 
   Options:
 
-    -h, --help         output usage information
-    -V, --version      output the version number
-    -b, --base <URL>   base URL
-    -m, --match <URL>  match URL (regexp)
-    -q, --quiet        suppress verbose messages
-    -t, --text         plain text output (default)
-    -j, --json         JSON output
+    -h, --help           output usage information
+    -V, --version        output the version number
+    -v, --verbose        output verbose messages
+    -t, --text           output as plain text (default)
+    -j, --json           output as JSON
+    -m, --match <URL>    match URL (regexp)
+    -b, --base <URL>     base URL for local HTML
+    -o, --output <file>  save as a file
 ```
 
 JavaScript API:
@@ -53,8 +53,8 @@ JavaScript API:
         console.error(err);
     });
 
-    picker.on("info", function(str) {
-        console.log(str);
+    picker.on("progress", function(info) {
+        console.log(info);
     });
 
     picker.fetch(input, function(err, res) {

@@ -4,7 +4,7 @@
     "description": "Pickup link URLs found on HTML/RSS/RDF/Atom",
     "main": "lib/picker.js",
     "bin": {
-        "picker": "bin/picker.cli.js"
+        "link-picker": "bin/picker.cli.js"
     },
     "dependencies": {
         "commander": "*",
