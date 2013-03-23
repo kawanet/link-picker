@@ -1,24 +1,15 @@
 # link-picker
 
-Pickup link URLs found on HTML/RSS/RDF/Atom
-
-## Installation
-
-```sh
-    npm install link-picker
-```
+Pickup URL links found on HTML. RSS/RDF/Atom sources are also accepted.
 
 ## Usage
 
-CLI:
+This package provides both interfaces of CLI and JavaScript API.
+
+## CLI
 
 ```
-  $ link-picker -m http://www.google.com/ http://www.google.com/
-  http://www.google.com/
-  http://www.google.com/preferences?hl=ja
-  http://www.google.com/advanced_search?hl=ja&authuser=0
-  http://www.google.com/language_tools?hl=ja&authuser=0
-  http://www.google.com/intl/ja/about.html
+  $ npm install -g link-picker
 
   $ link-picker -h
 
@@ -34,36 +25,66 @@ CLI:
     -m, --match <URL>    match URL (regexp)
     -b, --base <URL>     base URL for local HTML
     -o, --output <file>  save as a file
+    --ignore-hash        ignore after # hash in URL
+
+  $ link-picker http://www.google.com/
+  http://www.google.com/
+  http://www.google.co.jp/webhp?hl=ja&tab=ww
+  http://www.google.co.jp/imghp?hl=ja&tab=wi
+  http://maps.google.co.jp/maps?hl=ja&tab=wl
+  https://play.google.com/?hl=ja&tab=w8
+  ...
 ```
 
-JavaScript API:
+## JavaScript API
+
+### Installation
+
+```sh
+    npm install link-picker
+```
+
+### Callback Style
+
+This simple example shows all URLs linked from http://www.apple.com/
 
 ```javascript
     var LinkPicker = require("link-picker");
 
-    var picker = new LinkPicker(program);
+    var url  = "http://www.apple.com/";
 
-    picker.on("complete", function(res) {
-        res.forEach(function(url) {
-            console.log(url);
-        });
-    });
-
-    picker.on("error", function(err) {
-        console.error(err);
-    });
-
-    picker.on("progress", function(info) {
-        console.log(info);
-    });
-
-    picker.fetch(input, function(err, res) {
+    LinkPicker().fetch(url, function(err, res) {
         if (err) {
             console.error(err);
         } else {
-            console.log(res);
+            res.forEach(function(url) {
+                console.log(url);
+            });
         }
     });
+```
+
+### Event Style
+
+This example shows the latest node.js distribution package URL linked from http://node.js/
+
+```javascript
+    var LinkPicker = require("link-picker");
+
+    var url  = "http://nodejs.org/";
+    var opts = { match: "http://nodejs.org/dist/" };
+
+    var picker = new LinkPicker(opts)
+    .on("complete", function(res) {
+        console.log(res);
+    })
+    .on("error", function(err) {
+        console.error(err);
+    })
+    .on("progress", function(info) {
+        console.log(info);
+    })
+    .fetch(url);
 ```
 
 ## Author

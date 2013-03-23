@@ -4,6 +4,7 @@ var LinkPicker = require("../lib/picker");
 var program = require('commander');
 var pkg = require(__dirname + "/../package.json");
 var util = require("util");
+var colors = require("colors");
 
 program.version(pkg.version);
 program.usage('[options] URL');
@@ -13,6 +14,7 @@ program.option('-j, --json', 'output as JSON');
 program.option('-m, --match <URL>', 'match URL (regexp)');
 program.option('-b, --base <URL>', 'base URL for local HTML');
 program.option('-o, --output <file>', 'save as a file');
+program.option('--ignore-hash', 'ignore after # hash in URL');
 program.parse(process.argv);
 
 // die when called without arguments
@@ -37,9 +39,9 @@ picker.fetch(url, callback);
 // callback function
 function callback(err, res) {
     if (err) {
-        // console.log("failure");
+        // console.log("failure", err);
     } else {
-        // console.log("success", res.length);
+        // console.log("success", res);
     }
 }
 
@@ -58,14 +60,14 @@ function complete(res) {
 
 // failure handler
 function error(err) {
-    console.error("error:", err);
+    console.error(err.toString().inverse.red);
     process.exit(1);
 }
 
 // progress handler
 function progress(str) {
     if (!program.verbose) return;
-    console.info("progress:", str);
+    console.log(str.toString().cyan);
 }
 
 // output for a file or stdout

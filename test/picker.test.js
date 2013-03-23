@@ -4,22 +4,21 @@ LinkPicker = require("../");
 describe('LinkPicker', function() {
 
     describe('#fetch', function() {
-        var source = 'http://www.google.co.jp/',
-        source_notfound = 'http://www.google.co.jp/notfound';
+        var source = 'http://www.apple.com/',
+        source_notfound = 'http://www.apple.com/404-file-not-found';
 
         var picker;
 
         beforeEach(function() {
             picker = new LinkPicker({
-                base: null,
-                match: 'http://play.google.co.jp/'
+                match: 'http://www.apple.com/'
             });
         });
 
         it('emit "complete" with links on success', function(done) {
             picker.on("complete", function(links) {
                 //console.log(links);
-                expect(links).to.not.be.empty;
+                expect(links).not.to.be.null;
                 expect(links[0]).to.equal(source);
                 links.slice(1).forEach(function(link) {
                     expect(link).to.satisfy(function(link) {
