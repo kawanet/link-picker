@@ -14,6 +14,7 @@ program.option('-j, --json', 'output as JSON');
 program.option('-m, --match <URL>', 'match URL (regexp)');
 program.option('-b, --base <URL>', 'base URL for local HTML');
 program.option('-o, --output <file>', 'save as a file');
+program.option('-p, --proxy <URL>', 'HTTP proxy server');
 program.option('--ignore-hash', 'ignore after # hash in URL');
 program.parse(process.argv);
 

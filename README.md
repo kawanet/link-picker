@@ -25,6 +25,7 @@ This package provides both interfaces of CLI and JavaScript API.
     -m, --match <URL>    match URL (regexp)
     -b, --base <URL>     base URL for local HTML
     -o, --output <file>  save as a file
+    -p, --proxy <URL>    HTTP proxy server
     --ignore-hash        ignore after # hash in URL
 
   $ link-picker http://www.google.com/
@@ -53,7 +54,7 @@ This simple example shows all URLs linked from http://www.apple.com/
 
     var url  = "http://www.apple.com/";
 
-    LinkPicker().fetch(url, function(err, res) {
+    LinkPicker.fetch(url, function(err, res) {
         if (err) {
             console.error(err);
         } else {
