@@ -17,16 +17,17 @@ This package provides both interfaces of CLI and JavaScript API.
 
   Options:
 
-    -h, --help           output usage information
-    -V, --version        output the version number
-    -v, --verbose        output verbose messages
-    -t, --text           output as plain text (default)
-    -j, --json           output as JSON
-    -m, --match <URL>    match URL (regexp)
-    -b, --base <URL>     base URL for local HTML
-    -o, --output <file>  save as a file
-    -p, --proxy <URL>    HTTP proxy server
-    --ignore-hash        ignore after # hash in URL
+    -h, --help               output usage information
+    -V, --version            output the version number
+    -v, --verbose            output verbose messages
+    -t, --text               output as plain text (default)
+    -j, --json               output as JSON
+    -m, --match <URL>        match URL (regexp)
+    -b, --base <URL>         base URL for local HTML
+    -o, --output <file>      save as a file
+    -p, --proxy <URL>        HTTP proxy server URL
+    -A, --user-agent <name>  HTTP User-Agent name
+    --ignore-hash            ignore after # hash in URL
 
   $ link-picker http://www.google.com/
   http://www.google.com/

@@ -1,6 +1,6 @@
 {
     "name": "link-picker",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Pickup link URLs found on HTML/RSS/RDF/Atom",
     "main": "lib/picker.js",
     "bin": {
